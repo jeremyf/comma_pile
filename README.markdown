@@ -14,16 +14,17 @@ Config Options:
       containing all rows that were used in the compilation, is generated. [**OPTIONAL**, **SINGLE**]
   * **line_parser** - Specify a custom line parser to use; By default CommaPile::LineParser is used.
       A custom line parser would allow for transformation of data during compilation.  See
-      test/example\_line\_parser.rb
+      test/example\_line\_parser.rb [**OPTIONAL**, **SINGLE**]
   
 Example
 -------
-
-    'Work', 'Build CommaPile',2009-09-12,2
-    'Work', 'Build CommaPile',2009-09-13,1
-    'Work', 'Chase Chickens', 2009-09-12,4
-    'Work', 'Read Developer Blogs',2009-09-13,1
-    'Home', 'Do Dishes', 2009-09-12, 0.5
+    File.open('/path/to/input.csv', 'w+') do |file|
+      file.puts %('Work', 'Build CommaPile',2009-09-12,2)
+      file.puts %('Work', 'Build CommaPile',2009-09-13,1)
+      file.puts %('Work', 'Chase Chickens', 2009-09-12,4)
+      file.puts %('Work', 'Read Developer Blogs',2009-09-13,1)
+      file.puts %('Home', 'Do Dishes', 2009-09-12, 0.5)
+    end
 
     require 'comma_pile'
     
