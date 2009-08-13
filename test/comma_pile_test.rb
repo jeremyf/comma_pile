@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'example_line_parser'
+require '../examples/example_line_parser'
 
 class CommaPileTest < Test::Unit::TestCase
   CSV_FILE_PATH = File.join(File.dirname(__FILE__), "../test/fixtures/report.csv")
@@ -147,10 +147,10 @@ class CommaPileTest < Test::Unit::TestCase
       config.input = CSV_FILE_PATH
       config.on << :viewer_geolocation
       config.on << 0
-      config.sum_on << :filesize
+      config.sum_on << :bytes_streamed
     end
     report.generate!
-    assert_match /^#{Regexp.escape('1,off-campus,71.103.212.224,92094')}$/, report.summary
+    assert_match /^#{Regexp.escape('1,off-campus,71.103.212.224,6817382')}$/, report.summary
   end
 
   should "allow one or more accumulators" do
@@ -159,11 +159,11 @@ class CommaPileTest < Test::Unit::TestCase
       config.input = CSV_FILE_PATH
       config.on << :viewer_geolocation
       config.on << 0
-      config.sum_on << :filesize
+      config.sum_on << :bytes_streamed
     end
     report.generate!
         
-    assert_equal 17155, report['on-campus'].sum[:filesize]
-    assert_equal 371622045, report['off-campus'].sum[:filesize]
+    assert_equal 656567, report['on-campus'].sum[:bytes_streamed]
+    assert_equal 18919063132, report['off-campus'].sum[:bytes_streamed  ]
   end
 end
