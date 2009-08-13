@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION.yml",
+     "comma_pile.gemspec",
      "lib/comma_pile.rb",
      "lib/comma_pile/config.rb",
      "lib/comma_pile/line_parser.rb",
