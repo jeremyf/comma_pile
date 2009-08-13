@@ -141,6 +141,18 @@ class CommaPileTest < Test::Unit::TestCase
     assert_equal 94, report['off-campus']['68.45.25.118'].counter
   end
   
+  should "have a summary" do
+    report = CommaPile.new do |config|
+      config.line_parser = ExampleLineParser
+      config.input = CSV_FILE_PATH
+      config.on << :viewer_geolocation
+      config.on << 0
+      config.sum_on << :filesize
+    end
+    report.generate!
+    assert_match /^#{Regexp.escape('1,off-campus,71.103.212.224,92094')}$/, report.summary
+  end
+
   should "allow one or more accumulators" do
     report = CommaPile.new do |config|
       config.line_parser = ExampleLineParser
@@ -150,7 +162,7 @@ class CommaPileTest < Test::Unit::TestCase
       config.sum_on << :filesize
     end
     report.generate!
-    
+        
     assert_equal 17155, report['on-campus'].sum[:filesize]
     assert_equal 371622045, report['off-campus'].sum[:filesize]
   end

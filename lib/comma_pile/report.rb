@@ -17,6 +17,19 @@ module CommaPile
     end
 
 
+    def summary(entry = nil, parent_keys = [])
+      collector = ''
+      (entry || @results).each do |key, value|
+        if value.nil? || value.empty?
+          cells = [value.counter] + parent_keys + [key] + value.sum.values
+          collector += CSV.generate_line(cells.flatten)
+        else
+          collector += summary(value, parent_keys + [key])
+        end
+      end
+      collector
+    end
+    
     def to_stdout(index = 0, entry = nil)
       (entry || @results).each do |key, value|
         puts "#{"\t" * index}#{key}: #{value.counter}"
