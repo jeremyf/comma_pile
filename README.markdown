@@ -5,7 +5,7 @@ A simple gem for processing and aggregating CSV files.  CommaPile builds a table
 
 Config Options:
 
-  * **source** - What is the name of the source csv file [**REQUIRED**, **SINGUL**]
+  * **source** - What is the name of the source csv file [**REQUIRED**, **SINGLE**]
   * **on** - Specify any number of columns [**REQUIRED**, **MULTIPLE**]
   * **sum_on** - Specify a column that you want to accumulate given [**OPTIONAL**, **MULTIPLE**]
   * **conditions** - Specify a lambda, key-value pair that must be met for line to be
