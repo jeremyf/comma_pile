@@ -10,7 +10,11 @@ module CommaPile
     end
     
     def [](value)
-      line[value]
+      if value.is_a?(Integer)
+        line[value]
+      else
+        send(value)
+      end
     end
   end
 end
